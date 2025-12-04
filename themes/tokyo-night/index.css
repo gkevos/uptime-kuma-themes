@@ -1,0 +1,349 @@
+/* ========================================
+   TOKYO NIGHT UPTIME KUMA STATUS PAGE
+   Inspired by Tokyo city lights at night
+   Based on: https://github.com/enkia/tokyo-night-vscode-theme
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Tokyo Night palette */
+  --bg-dark: #1a1b26;
+  --bg-default: #24283b;
+  --bg-highlight: #292e42;
+  --bg-visual: #33467c;
+
+  --fg: #c0caf5;
+  --fg-dark: #a9b1d6;
+  --fg-gutter: #3b4261;
+  --comment: #565f89;
+
+  /* Accent colors */
+  --blue: #7aa2f7;
+  --cyan: #7dcfff;
+  --magenta: #bb9af7;
+  --purple: #9d7cd8;
+  --orange: #ff9e64;
+  --yellow: #e0af68;
+  --green: #9ece6a;
+  --teal: #73daca;
+  --red: #f7768e;
+  --pink: #ff007c;
+
+  /* Theme mappings */
+  --primary: var(--blue);
+  --success: var(--green);
+  --warning: var(--yellow);
+  --danger: var(--red);
+  --maintenance: var(--magenta);
+
+  --bg-base: var(--bg-dark);
+  --bg-surface: var(--bg-default);
+  --bg-elevated: var(--bg-highlight);
+  --fg-primary: var(--fg);
+  --fg-secondary: var(--fg-dark);
+  --fg-muted: var(--comment);
+
+  --border-subtle: rgba(192, 202, 245, 0.06);
+  --border-default: rgba(192, 202, 245, 0.12);
+  --border-accent: rgba(122, 162, 247, 0.4);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ============ BASE STYLES ============ */
+
+body,
+.status-page {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  background: var(--bg-base) !important;
+  color: var(--fg-primary) !important;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse at top, rgba(122, 162, 247, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(187, 154, 247, 0.05) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 900px !important;
+}
+
+/* ============ HEADER ============ */
+
+.status-page h1 {
+  font-weight: 700 !important;
+  font-size: 2.5rem !important;
+  letter-spacing: -0.02em;
+  color: var(--fg-primary) !important;
+}
+
+.status-page .description {
+  color: var(--fg-secondary) !important;
+  font-size: 1.05rem !important;
+}
+
+/* ============ OVERALL STATUS ============ */
+
+.overall-status {
+  border-radius: var(--radius-lg) !important;
+  padding: 1.5rem 1.75rem !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  border: 1px solid var(--border-subtle) !important;
+  margin-bottom: 2rem !important;
+  color: var(--fg-primary) !important;
+}
+
+.overall-status.ok {
+  background: linear-gradient(135deg, rgba(158, 206, 106, 0.12), rgba(158, 206, 106, 0.04)) !important;
+  border-color: rgba(158, 206, 106, 0.3) !important;
+}
+
+.overall-status.warn {
+  background: linear-gradient(135deg, rgba(224, 175, 104, 0.12), rgba(224, 175, 104, 0.04)) !important;
+  border-color: rgba(224, 175, 104, 0.3) !important;
+}
+
+.overall-status.danger {
+  background: linear-gradient(135deg, rgba(247, 118, 142, 0.12), rgba(247, 118, 142, 0.04)) !important;
+  border-color: rgba(247, 118, 142, 0.3) !important;
+}
+
+/* ============ MONITOR CARDS ============ */
+
+.shadow-box {
+  background: var(--bg-surface) !important;
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: var(--shadow-card) !important;
+  margin-bottom: 1.5rem !important;
+  overflow: hidden;
+}
+
+.shadow-box .group-title,
+.monitor-group-title {
+  font-weight: 600 !important;
+  font-size: 0.72rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-muted) !important;
+  padding: 1.25rem 1.5rem !important;
+  background: var(--bg-elevated) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+
+/* ============ MONITOR LIST ============ */
+
+.monitor-list-item,
+.item {
+  padding: 1.25rem 1.5rem !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  transition: background 0.2s ease;
+}
+
+.monitor-list-item:last-child,
+.item:last-child {
+  border-bottom: none !important;
+}
+
+.monitor-list-item:hover,
+.item:hover {
+  background: rgba(122, 162, 247, 0.08) !important;
+}
+
+.monitor-list-item .name,
+.item .name {
+  font-weight: 500 !important;
+  color: var(--fg-primary) !important;
+}
+
+/* ============ BADGES ============ */
+
+.badge {
+  border-radius: 20px !important;
+  padding: 0.4rem 0.9rem !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge.bg-success,
+.badge.bg-primary {
+  background: rgba(158, 206, 106, 0.15) !important;
+  color: var(--green) !important;
+}
+
+.badge.bg-warning {
+  background: rgba(224, 175, 104, 0.15) !important;
+  color: var(--yellow) !important;
+}
+
+.badge.bg-danger {
+  background: rgba(247, 118, 142, 0.15) !important;
+  color: var(--red) !important;
+}
+
+.badge.bg-secondary,
+.badge.bg-maintenance {
+  background: rgba(187, 154, 247, 0.15) !important;
+  color: var(--magenta) !important;
+}
+
+/* ============ HEARTBEAT BAR ============ */
+
+.hp-bar-big,
+.beat-bar {
+  background: var(--bg-dark) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.beat {
+  border-radius: 4px !important;
+  transition: transform 0.15s ease;
+}
+
+.beat:hover {
+  transform: scaleY(1.35);
+  filter: brightness(1.15);
+}
+
+.beat.empty { background: var(--fg-gutter) !important; }
+.beat.up { background: var(--green) !important; }
+.beat.down { background: var(--red) !important; }
+.beat.pending { background: var(--yellow) !important; }
+.beat.maintenance { background: var(--magenta) !important; }
+
+.uptime {
+  font-weight: 600 !important;
+  color: var(--fg-secondary) !important;
+}
+
+/* ============ INCIDENTS ============ */
+
+.incident {
+  background: var(--bg-surface) !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border-subtle) !important;
+  padding: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.incident:hover {
+  border-color: var(--border-accent) !important;
+}
+
+.incident-title {
+  font-weight: 600 !important;
+  color: var(--fg-primary) !important;
+}
+
+.incident .content {
+  color: var(--fg-secondary) !important;
+}
+
+.incident .date {
+  color: var(--fg-muted) !important;
+  font-size: 0.75rem !important;
+}
+
+/* ============ BUTTONS ============ */
+
+.btn {
+  border-radius: var(--radius-md) !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1.5rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-primary {
+  background: var(--blue) !important;
+  color: var(--bg-dark) !important;
+  border: none !important;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(122, 162, 247, 0.4) !important;
+}
+
+/* ============ FOOTER ============ */
+
+footer,
+.footer {
+  color: var(--fg-muted) !important;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 2rem !important;
+  margin-top: 3rem;
+}
+
+footer a,
+.footer a {
+  color: var(--fg-secondary) !important;
+}
+
+footer a:hover,
+.footer a:hover {
+  color: var(--cyan) !important;
+}
+
+/* ============ FORMS ============ */
+
+input, select, textarea {
+  background: var(--bg-dark) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: var(--radius-sm) !important;
+  color: var(--fg-primary) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--blue) !important;
+  box-shadow: 0 0 0 3px rgba(122, 162, 247, 0.2) !important;
+  outline: none !important;
+}
+
+/* ============ TOOLTIPS ============ */
+
+.tooltip-inner {
+  background: var(--bg-elevated) !important;
+  color: var(--fg-primary) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+/* ============ SCROLLBAR ============ */
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--bg-highlight); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--comment); }
+
+/* ============ MISC ============ */
+
+.spinner-border { color: var(--blue) !important; }
+::selection { background: var(--blue); color: var(--bg-dark); }
+
+@media (max-width: 768px) {
+  .status-page h1 { font-size: 1.75rem !important; }
+  .overall-status { padding: 1.25rem !important; }
+  .monitor-list-item, .item { padding: 1rem 1.25rem !important; }
+}

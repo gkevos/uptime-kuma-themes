@@ -1,0 +1,409 @@
+/* ========================================
+   SYNTHWAVE '84 UPTIME KUMA STATUS PAGE
+   Retro 80s neon aesthetic with glow effects
+   Based on: https://github.com/robb0wen/synthwave-vscode
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Synthwave '84 palette */
+  --bg-base: #262335;
+  --bg-surface: #2a2139;
+  --bg-elevated: #34294f;
+  --bg-highlight: #413865;
+
+  --fg: #bbbbbb;
+  --fg-bright: #ffffff;
+  --fg-muted: #848bbd;
+
+  /* Neon colors */
+  --pink: #ff7edb;
+  --cyan: #72f1b8;
+  --yellow: #fede5d;
+  --orange: #f97e72;
+  --red: #fe4450;
+  --purple: #b893ce;
+  --blue: #36f9f6;
+
+  /* Theme mappings */
+  --primary: var(--pink);
+  --success: var(--cyan);
+  --warning: var(--yellow);
+  --danger: var(--red);
+  --maintenance: var(--blue);
+
+  --fg-primary: var(--fg-bright);
+  --fg-secondary: var(--fg);
+  --fg-tertiary: var(--fg-muted);
+
+  --border-subtle: rgba(255, 126, 219, 0.08);
+  --border-default: rgba(255, 126, 219, 0.15);
+  --border-accent: rgba(255, 126, 219, 0.5);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --glow-pink: 0 0 20px rgba(255, 126, 219, 0.5);
+  --glow-cyan: 0 0 20px rgba(114, 241, 184, 0.5);
+}
+
+/* ============ BASE STYLES ============ */
+
+body,
+.status-page {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  background: var(--bg-base) !important;
+  color: var(--fg-primary) !important;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse at top, rgba(255, 126, 219, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(54, 249, 246, 0.08) 0%, transparent 40%),
+    linear-gradient(180deg, transparent 0%, rgba(255, 126, 219, 0.03) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Grid lines effect */
+body::after {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background:
+    linear-gradient(transparent 0%, rgba(255, 126, 219, 0.03) 100%),
+    repeating-linear-gradient(90deg, rgba(255, 126, 219, 0.03) 0px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(0deg, rgba(255, 126, 219, 0.03) 0px, transparent 1px, transparent 60px);
+  pointer-events: none;
+  z-index: 0;
+  mask-image: linear-gradient(to top, black, transparent);
+  -webkit-mask-image: linear-gradient(to top, black, transparent);
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 900px !important;
+}
+
+/* ============ HEADER ============ */
+
+.status-page h1 {
+  font-weight: 700 !important;
+  font-size: 2.5rem !important;
+  letter-spacing: -0.02em;
+  color: var(--fg-primary) !important;
+  text-shadow: 0 0 10px rgba(255, 126, 219, 0.5);
+}
+
+.status-page .description {
+  color: var(--fg-secondary) !important;
+  font-size: 1.05rem !important;
+}
+
+/* ============ OVERALL STATUS ============ */
+
+.overall-status {
+  border-radius: var(--radius-lg) !important;
+  padding: 1.5rem 1.75rem !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  border: 1px solid var(--border-subtle) !important;
+  margin-bottom: 2rem !important;
+  color: var(--fg-primary) !important;
+}
+
+.overall-status.ok {
+  background: linear-gradient(135deg, rgba(114, 241, 184, 0.15), rgba(114, 241, 184, 0.05)) !important;
+  border-color: rgba(114, 241, 184, 0.4) !important;
+  box-shadow: 0 0 30px rgba(114, 241, 184, 0.2) !important;
+}
+
+.overall-status.warn {
+  background: linear-gradient(135deg, rgba(254, 222, 93, 0.15), rgba(254, 222, 93, 0.05)) !important;
+  border-color: rgba(254, 222, 93, 0.4) !important;
+  box-shadow: 0 0 30px rgba(254, 222, 93, 0.2) !important;
+}
+
+.overall-status.danger {
+  background: linear-gradient(135deg, rgba(254, 68, 80, 0.15), rgba(254, 68, 80, 0.05)) !important;
+  border-color: rgba(254, 68, 80, 0.4) !important;
+  box-shadow: 0 0 30px rgba(254, 68, 80, 0.2) !important;
+}
+
+/* ============ MONITOR CARDS ============ */
+
+.shadow-box {
+  background: var(--bg-surface) !important;
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: var(--shadow-card) !important;
+  margin-bottom: 1.5rem !important;
+  overflow: hidden;
+}
+
+.shadow-box .group-title,
+.monitor-group-title {
+  font-weight: 600 !important;
+  font-size: 0.72rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--pink) !important;
+  padding: 1.25rem 1.5rem !important;
+  background: var(--bg-elevated) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  text-shadow: 0 0 8px rgba(255, 126, 219, 0.5);
+}
+
+/* ============ MONITOR LIST ============ */
+
+.monitor-list-item,
+.item {
+  padding: 1.25rem 1.5rem !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  transition: all 0.2s ease;
+}
+
+.monitor-list-item:last-child,
+.item:last-child {
+  border-bottom: none !important;
+}
+
+.monitor-list-item:hover,
+.item:hover {
+  background: rgba(255, 126, 219, 0.08) !important;
+  box-shadow: inset 0 0 20px rgba(255, 126, 219, 0.05);
+}
+
+.monitor-list-item .name,
+.item .name {
+  font-weight: 500 !important;
+  color: var(--fg-primary) !important;
+}
+
+/* ============ BADGES ============ */
+
+.badge {
+  border-radius: 20px !important;
+  padding: 0.4rem 0.9rem !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge.bg-success,
+.badge.bg-primary {
+  background: rgba(114, 241, 184, 0.2) !important;
+  color: var(--cyan) !important;
+  text-shadow: 0 0 8px rgba(114, 241, 184, 0.6);
+  box-shadow: 0 0 10px rgba(114, 241, 184, 0.3);
+}
+
+.badge.bg-warning {
+  background: rgba(254, 222, 93, 0.2) !important;
+  color: var(--yellow) !important;
+  text-shadow: 0 0 8px rgba(254, 222, 93, 0.6);
+  box-shadow: 0 0 10px rgba(254, 222, 93, 0.3);
+}
+
+.badge.bg-danger {
+  background: rgba(254, 68, 80, 0.2) !important;
+  color: var(--red) !important;
+  text-shadow: 0 0 8px rgba(254, 68, 80, 0.6);
+  box-shadow: 0 0 10px rgba(254, 68, 80, 0.3);
+}
+
+.badge.bg-secondary,
+.badge.bg-maintenance {
+  background: rgba(54, 249, 246, 0.2) !important;
+  color: var(--blue) !important;
+  text-shadow: 0 0 8px rgba(54, 249, 246, 0.6);
+  box-shadow: 0 0 10px rgba(54, 249, 246, 0.3);
+}
+
+/* ============ HEARTBEAT BAR ============ */
+
+.hp-bar-big,
+.beat-bar {
+  background: var(--bg-base) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.beat {
+  border-radius: 4px !important;
+  transition: all 0.15s ease;
+}
+
+.beat:hover {
+  transform: scaleY(1.4);
+  filter: brightness(1.2);
+}
+
+.beat.empty { background: var(--bg-highlight) !important; }
+.beat.up {
+  background: var(--cyan) !important;
+  box-shadow: 0 0 8px rgba(114, 241, 184, 0.6);
+}
+.beat.down {
+  background: var(--red) !important;
+  box-shadow: 0 0 8px rgba(254, 68, 80, 0.6);
+}
+.beat.pending {
+  background: var(--yellow) !important;
+  box-shadow: 0 0 8px rgba(254, 222, 93, 0.6);
+}
+.beat.maintenance {
+  background: var(--blue) !important;
+  box-shadow: 0 0 8px rgba(54, 249, 246, 0.6);
+}
+
+.uptime {
+  font-weight: 600 !important;
+  color: var(--fg-secondary) !important;
+}
+
+/* ============ INCIDENTS ============ */
+
+.incident {
+  background: var(--bg-surface) !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border-subtle) !important;
+  padding: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.incident:hover {
+  border-color: var(--border-accent) !important;
+  box-shadow: 0 0 20px rgba(255, 126, 219, 0.15) !important;
+}
+
+.incident-title {
+  font-weight: 600 !important;
+  color: var(--fg-primary) !important;
+}
+
+.incident .content {
+  color: var(--fg-secondary) !important;
+}
+
+.incident .date {
+  color: var(--fg-tertiary) !important;
+  font-size: 0.75rem !important;
+}
+
+/* ============ BUTTONS ============ */
+
+.btn {
+  border-radius: var(--radius-md) !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1.5rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--pink), #f97e72) !important;
+  color: var(--bg-base) !important;
+  border: none !important;
+  box-shadow: 0 0 20px rgba(255, 126, 219, 0.4);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 30px rgba(255, 126, 219, 0.6) !important;
+}
+
+/* ============ FOOTER ============ */
+
+footer,
+.footer {
+  color: var(--fg-tertiary) !important;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 2rem !important;
+  margin-top: 3rem;
+}
+
+footer a,
+.footer a {
+  color: var(--fg-secondary) !important;
+}
+
+footer a:hover,
+.footer a:hover {
+  color: var(--pink) !important;
+  text-shadow: 0 0 8px rgba(255, 126, 219, 0.5);
+}
+
+/* ============ FORMS ============ */
+
+input, select, textarea {
+  background: var(--bg-base) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: var(--radius-sm) !important;
+  color: var(--fg-primary) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--pink) !important;
+  box-shadow: 0 0 0 3px rgba(255, 126, 219, 0.2), 0 0 15px rgba(255, 126, 219, 0.3) !important;
+  outline: none !important;
+}
+
+/* ============ TOOLTIPS ============ */
+
+.tooltip-inner {
+  background: var(--bg-elevated) !important;
+  color: var(--fg-primary) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+/* ============ SCROLLBAR ============ */
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb {
+  background: var(--bg-elevated);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pink);
+  box-shadow: 0 0 8px rgba(255, 126, 219, 0.5);
+}
+
+/* ============ MISC ============ */
+
+.spinner-border { color: var(--pink) !important; }
+::selection { background: var(--pink); color: var(--bg-base); }
+
+/* Neon glow animation */
+@keyframes neon-pulse {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  50% { opacity: 0.8; filter: brightness(1.2); }
+}
+
+.overall-status.ok,
+.badge.bg-success {
+  animation: neon-pulse 3s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .status-page h1 { font-size: 1.75rem !important; }
+  .overall-status { padding: 1.25rem !important; }
+  .monitor-list-item, .item { padding: 1rem 1.25rem !important; }
+}

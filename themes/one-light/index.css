@@ -1,0 +1,327 @@
+/* ========================================
+   ONE LIGHT UPTIME KUMA STATUS PAGE THEME
+   Clean light theme for daytime use
+   Based on: https://github.com/akamud/vscode-theme-onelight
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* One Light palette */
+  --bg-base: #fafafa;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f0f0f0;
+  --bg-highlight: #e5e5e6;
+
+  --fg: #383a42;
+  --fg-dim: #696c77;
+  --fg-muted: #a0a1a7;
+
+  /* Syntax colors */
+  --red: #e45649;
+  --orange: #986801;
+  --yellow: #c18401;
+  --green: #50a14f;
+  --cyan: #0184bc;
+  --blue: #4078f2;
+  --purple: #a626a4;
+
+  /* Theme mappings */
+  --primary: var(--blue);
+  --success: var(--green);
+  --warning: var(--yellow);
+  --danger: var(--red);
+  --maintenance: var(--purple);
+
+  --fg-primary: var(--fg);
+  --fg-secondary: var(--fg-dim);
+  --fg-tertiary: var(--fg-muted);
+
+  --border-subtle: rgba(56, 58, 66, 0.08);
+  --border-default: rgba(56, 58, 66, 0.15);
+  --border-accent: rgba(64, 120, 242, 0.4);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ============ BASE STYLES ============ */
+
+body,
+.status-page {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  background: var(--bg-base) !important;
+  color: var(--fg-primary) !important;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 900px !important;
+}
+
+/* ============ HEADER ============ */
+
+.status-page h1 {
+  font-weight: 700 !important;
+  font-size: 2.5rem !important;
+  letter-spacing: -0.02em;
+  color: var(--fg-primary) !important;
+}
+
+.status-page .description {
+  color: var(--fg-secondary) !important;
+  font-size: 1.05rem !important;
+}
+
+/* ============ OVERALL STATUS ============ */
+
+.overall-status {
+  border-radius: var(--radius-lg) !important;
+  padding: 1.5rem 1.75rem !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  border: 1px solid var(--border-default) !important;
+  margin-bottom: 2rem !important;
+  color: var(--fg-primary) !important;
+}
+
+.overall-status.ok {
+  background: linear-gradient(135deg, rgba(80, 161, 79, 0.1), rgba(80, 161, 79, 0.03)) !important;
+  border-color: rgba(80, 161, 79, 0.4) !important;
+}
+
+.overall-status.warn {
+  background: linear-gradient(135deg, rgba(193, 132, 1, 0.1), rgba(193, 132, 1, 0.03)) !important;
+  border-color: rgba(193, 132, 1, 0.4) !important;
+}
+
+.overall-status.danger {
+  background: linear-gradient(135deg, rgba(228, 86, 73, 0.1), rgba(228, 86, 73, 0.03)) !important;
+  border-color: rgba(228, 86, 73, 0.4) !important;
+}
+
+/* ============ MONITOR CARDS ============ */
+
+.shadow-box {
+  background: var(--bg-surface) !important;
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: var(--shadow-card) !important;
+  margin-bottom: 1.5rem !important;
+  overflow: hidden;
+}
+
+.shadow-box .group-title,
+.monitor-group-title {
+  font-weight: 600 !important;
+  font-size: 0.72rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-tertiary) !important;
+  padding: 1.25rem 1.5rem !important;
+  background: var(--bg-elevated) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+
+/* ============ MONITOR LIST ============ */
+
+.monitor-list-item,
+.item {
+  padding: 1.25rem 1.5rem !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  transition: background 0.2s ease;
+}
+
+.monitor-list-item:last-child,
+.item:last-child {
+  border-bottom: none !important;
+}
+
+.monitor-list-item:hover,
+.item:hover {
+  background: rgba(64, 120, 242, 0.04) !important;
+}
+
+.monitor-list-item .name,
+.item .name {
+  font-weight: 500 !important;
+  color: var(--fg-primary) !important;
+}
+
+/* ============ BADGES ============ */
+
+.badge {
+  border-radius: 6px !important;
+  padding: 0.4rem 0.9rem !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge.bg-success,
+.badge.bg-primary {
+  background: rgba(80, 161, 79, 0.12) !important;
+  color: var(--green) !important;
+}
+
+.badge.bg-warning {
+  background: rgba(193, 132, 1, 0.12) !important;
+  color: var(--yellow) !important;
+}
+
+.badge.bg-danger {
+  background: rgba(228, 86, 73, 0.12) !important;
+  color: var(--red) !important;
+}
+
+.badge.bg-secondary,
+.badge.bg-maintenance {
+  background: rgba(166, 38, 164, 0.12) !important;
+  color: var(--purple) !important;
+}
+
+/* ============ HEARTBEAT BAR ============ */
+
+.hp-bar-big,
+.beat-bar {
+  background: var(--bg-elevated) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.beat {
+  border-radius: 3px !important;
+  transition: transform 0.15s ease;
+}
+
+.beat:hover {
+  transform: scaleY(1.3);
+}
+
+.beat.empty { background: var(--bg-highlight) !important; }
+.beat.up { background: var(--green) !important; }
+.beat.down { background: var(--red) !important; }
+.beat.pending { background: var(--yellow) !important; }
+.beat.maintenance { background: var(--purple) !important; }
+
+.uptime {
+  font-weight: 600 !important;
+  color: var(--fg-secondary) !important;
+}
+
+/* ============ INCIDENTS ============ */
+
+.incident {
+  background: var(--bg-surface) !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border-subtle) !important;
+  padding: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.incident:hover {
+  border-color: var(--border-accent) !important;
+  box-shadow: 0 2px 8px rgba(64, 120, 242, 0.1) !important;
+}
+
+.incident-title {
+  font-weight: 600 !important;
+  color: var(--fg-primary) !important;
+}
+
+.incident .content {
+  color: var(--fg-secondary) !important;
+}
+
+.incident .date {
+  color: var(--fg-tertiary) !important;
+  font-size: 0.75rem !important;
+}
+
+/* ============ BUTTONS ============ */
+
+.btn {
+  border-radius: var(--radius-md) !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1.5rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-primary {
+  background: var(--blue) !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(64, 120, 242, 0.3) !important;
+}
+
+/* ============ FOOTER ============ */
+
+footer,
+.footer {
+  color: var(--fg-tertiary) !important;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 2rem !important;
+  margin-top: 3rem;
+}
+
+footer a,
+.footer a {
+  color: var(--fg-secondary) !important;
+}
+
+footer a:hover,
+.footer a:hover {
+  color: var(--blue) !important;
+}
+
+/* ============ FORMS ============ */
+
+input, select, textarea {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: var(--radius-sm) !important;
+  color: var(--fg-primary) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--blue) !important;
+  box-shadow: 0 0 0 3px rgba(64, 120, 242, 0.15) !important;
+  outline: none !important;
+}
+
+/* ============ TOOLTIPS ============ */
+
+.tooltip-inner {
+  background: var(--fg-primary) !important;
+  color: var(--bg-surface) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+/* ============ SCROLLBAR ============ */
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--bg-highlight); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--fg-muted); }
+
+/* ============ MISC ============ */
+
+.spinner-border { color: var(--blue) !important; }
+::selection { background: var(--blue); color: #ffffff; }
+
+@media (max-width: 768px) {
+  .status-page h1 { font-size: 1.75rem !important; }
+  .overall-status { padding: 1.25rem !important; }
+  .monitor-list-item, .item { padding: 1rem 1.25rem !important; }
+}

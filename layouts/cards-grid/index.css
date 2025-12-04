@@ -1,0 +1,219 @@
+/* ========================================
+   CARDS GRID LAYOUT
+   Individual monitor cards in a responsive grid
+   ======================================== */
+
+/* Container - wide for card grid */
+.container {
+  max-width: 1300px !important;
+  padding: 2rem !important;
+}
+
+/* ============ HEADER ============ */
+
+.status-page .header,
+.status-page header {
+  text-align: center;
+  margin-bottom: 2.5rem !important;
+  padding: 1.5rem 0 !important;
+}
+
+.status-page h1 {
+  font-size: 2.5rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.status-page .description {
+  font-size: 1.1rem !important;
+  max-width: 600px;
+  margin: 0 auto 1rem;
+}
+
+.status-page .logo {
+  max-height: 70px !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* ============ OVERALL STATUS ============ */
+
+.overall-status {
+  padding: 1.5rem 2rem !important;
+  margin-bottom: 2.5rem !important;
+  font-size: 1.1rem !important;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============ MONITOR GROUPS - Cards ============ */
+
+/* Hide group titles or make them span full width */
+.shadow-box .group-title,
+.monitor-group-title {
+  padding: 1rem 1.5rem !important;
+  font-size: 0.8rem !important;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+/* Break monitors out of list into grid */
+.shadow-box {
+  display: contents !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Target the monitor items container */
+.monitor-list,
+.shadow-box > ul,
+.shadow-box > div:not(.group-title) {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+  gap: 1.25rem !important;
+}
+
+/* Individual monitor as card */
+.monitor-list-item,
+.item {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 1.5rem !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(128, 128, 128, 0.15) !important;
+  background: inherit;
+  min-height: 140px;
+  justify-content: space-between;
+}
+
+.monitor-list-item .name,
+.item .name {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.75rem !important;
+  text-align: center;
+}
+
+/* ============ BADGES - Centered in card ============ */
+
+.badge {
+  padding: 0.4rem 1rem !important;
+  font-size: 0.7rem !important;
+  align-self: center;
+  margin-bottom: 1rem !important;
+}
+
+/* ============ HEARTBEAT BAR - Full width in card ============ */
+
+.hp-bar-big,
+.beat-bar {
+  height: 28px !important;
+  width: 100% !important;
+  margin-top: auto;
+}
+
+.beat {
+  min-width: 4px !important;
+  border-radius: 4px !important;
+}
+
+.uptime {
+  font-size: 0.85rem !important;
+  text-align: center;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* ============ INCIDENTS - Card Grid ============ */
+
+.incidents-list,
+.incident-list {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+  gap: 1.25rem !important;
+}
+
+.incident {
+  padding: 1.5rem !important;
+  margin-bottom: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.incident-title {
+  font-size: 1rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.incident .content {
+  font-size: 0.9rem !important;
+  flex: 1;
+}
+
+.incident .date {
+  font-size: 0.75rem !important;
+  margin-top: 1rem !important;
+}
+
+/* ============ FOOTER ============ */
+
+footer,
+.footer {
+  padding: 2rem 0 !important;
+  margin-top: 3rem !important;
+  text-align: center;
+}
+
+/* ============ BUTTONS ============ */
+
+.btn {
+  padding: 0.75rem 1.5rem !important;
+}
+
+/* ============ RESPONSIVE ============ */
+
+@media (max-width: 900px) {
+  .container {
+    padding: 1.5rem !important;
+  }
+
+  .monitor-list,
+  .shadow-box > ul,
+  .shadow-box > div:not(.group-title) {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+  }
+
+  .status-page h1 {
+    font-size: 2rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem !important;
+  }
+
+  .monitor-list,
+  .shadow-box > ul,
+  .shadow-box > div:not(.group-title),
+  .incidents-list,
+  .incident-list {
+    grid-template-columns: 1fr !important;
+  }
+
+  .monitor-list-item,
+  .item {
+    padding: 1.25rem !important;
+    min-height: 120px;
+  }
+
+  .status-page h1 {
+    font-size: 1.75rem !important;
+  }
+
+  .overall-status {
+    padding: 1.25rem !important;
+  }
+}

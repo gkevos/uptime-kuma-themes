@@ -1,0 +1,331 @@
+/* ========================================
+   GITHUB DARK UPTIME KUMA STATUS PAGE
+   Official GitHub colors - familiar & clean
+   Based on: https://github.com/primer/github-vscode-theme
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* GitHub Dark palette */
+  --canvas-default: #0d1117;
+  --canvas-subtle: #161b22;
+  --canvas-inset: #010409;
+
+  --fg-default: #e6edf3;
+  --fg-muted: #7d8590;
+  --fg-subtle: #6e7681;
+
+  /* Border colors */
+  --border-default: #30363d;
+  --border-muted: #21262d;
+  --border-subtle: rgba(240, 246, 252, 0.1);
+
+  /* Accent colors */
+  --accent-fg: #2f81f7;
+  --accent-emphasis: #1f6feb;
+  --success-fg: #3fb950;
+  --success-emphasis: #238636;
+  --attention-fg: #d29922;
+  --attention-emphasis: #9e6a03;
+  --danger-fg: #f85149;
+  --danger-emphasis: #da3633;
+  --done-fg: #a371f7;
+  --done-emphasis: #8957e5;
+
+  /* Theme mappings */
+  --primary: var(--accent-fg);
+  --success: var(--success-fg);
+  --warning: var(--attention-fg);
+  --danger: var(--danger-fg);
+  --maintenance: var(--done-fg);
+
+  --bg-base: var(--canvas-default);
+  --bg-surface: var(--canvas-subtle);
+  --bg-elevated: #1c2128;
+  --fg-primary: var(--fg-default);
+  --fg-secondary: var(--fg-muted);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --shadow-card: 0 3px 12px rgba(1, 4, 9, 0.5);
+}
+
+/* ============ BASE STYLES ============ */
+
+body,
+.status-page {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  background: var(--bg-base) !important;
+  color: var(--fg-primary) !important;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 900px !important;
+}
+
+/* ============ HEADER ============ */
+
+.status-page h1 {
+  font-weight: 600 !important;
+  font-size: 2rem !important;
+  letter-spacing: -0.02em;
+  color: var(--fg-primary) !important;
+}
+
+.status-page .description {
+  color: var(--fg-secondary) !important;
+  font-size: 1rem !important;
+}
+
+/* ============ OVERALL STATUS ============ */
+
+.overall-status {
+  border-radius: var(--radius-lg) !important;
+  padding: 1.25rem 1.5rem !important;
+  font-weight: 500 !important;
+  font-size: 1rem !important;
+  border: 1px solid var(--border-default) !important;
+  margin-bottom: 1.5rem !important;
+  color: var(--fg-primary) !important;
+}
+
+.overall-status.ok {
+  background: rgba(63, 185, 80, 0.1) !important;
+  border-color: var(--success-emphasis) !important;
+}
+
+.overall-status.warn {
+  background: rgba(210, 153, 34, 0.1) !important;
+  border-color: var(--attention-emphasis) !important;
+}
+
+.overall-status.danger {
+  background: rgba(248, 81, 73, 0.1) !important;
+  border-color: var(--danger-emphasis) !important;
+}
+
+/* ============ MONITOR CARDS ============ */
+
+.shadow-box {
+  background: var(--bg-surface) !important;
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border-default) !important;
+  box-shadow: var(--shadow-card) !important;
+  margin-bottom: 1rem !important;
+  overflow: hidden;
+}
+
+.shadow-box .group-title,
+.monitor-group-title {
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  color: var(--fg-primary) !important;
+  padding: 1rem 1.25rem !important;
+  background: var(--bg-elevated) !important;
+  border-bottom: 1px solid var(--border-default) !important;
+}
+
+/* ============ MONITOR LIST ============ */
+
+.monitor-list-item,
+.item {
+  padding: 1rem 1.25rem !important;
+  border-bottom: 1px solid var(--border-muted) !important;
+  transition: background 0.15s ease;
+}
+
+.monitor-list-item:last-child,
+.item:last-child {
+  border-bottom: none !important;
+}
+
+.monitor-list-item:hover,
+.item:hover {
+  background: rgba(47, 129, 247, 0.04) !important;
+}
+
+.monitor-list-item .name,
+.item .name {
+  font-weight: 500 !important;
+  color: var(--fg-primary) !important;
+}
+
+/* ============ BADGES ============ */
+
+.badge {
+  border-radius: 20px !important;
+  padding: 0.25rem 0.75rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  border: 1px solid transparent !important;
+}
+
+.badge.bg-success,
+.badge.bg-primary {
+  background: rgba(63, 185, 80, 0.15) !important;
+  color: var(--success-fg) !important;
+  border-color: rgba(63, 185, 80, 0.4) !important;
+}
+
+.badge.bg-warning {
+  background: rgba(210, 153, 34, 0.15) !important;
+  color: var(--attention-fg) !important;
+  border-color: rgba(210, 153, 34, 0.4) !important;
+}
+
+.badge.bg-danger {
+  background: rgba(248, 81, 73, 0.15) !important;
+  color: var(--danger-fg) !important;
+  border-color: rgba(248, 81, 73, 0.4) !important;
+}
+
+.badge.bg-secondary,
+.badge.bg-maintenance {
+  background: rgba(163, 113, 247, 0.15) !important;
+  color: var(--done-fg) !important;
+  border-color: rgba(163, 113, 247, 0.4) !important;
+}
+
+/* ============ HEARTBEAT BAR ============ */
+
+.hp-bar-big,
+.beat-bar {
+  background: var(--canvas-inset) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.beat {
+  border-radius: 2px !important;
+  transition: transform 0.1s ease;
+}
+
+.beat:hover {
+  transform: scaleY(1.25);
+}
+
+.beat.empty { background: var(--border-muted) !important; }
+.beat.up { background: var(--success-fg) !important; }
+.beat.down { background: var(--danger-fg) !important; }
+.beat.pending { background: var(--attention-fg) !important; }
+.beat.maintenance { background: var(--done-fg) !important; }
+
+.uptime {
+  font-weight: 500 !important;
+  color: var(--fg-secondary) !important;
+}
+
+/* ============ INCIDENTS ============ */
+
+.incident {
+  background: var(--bg-surface) !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border-default) !important;
+  padding: 1.25rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.incident:hover {
+  border-color: var(--accent-fg) !important;
+}
+
+.incident-title {
+  font-weight: 600 !important;
+  color: var(--fg-primary) !important;
+}
+
+.incident .content {
+  color: var(--fg-secondary) !important;
+}
+
+.incident .date {
+  color: var(--fg-subtle) !important;
+  font-size: 0.75rem !important;
+}
+
+/* ============ BUTTONS ============ */
+
+.btn {
+  border-radius: var(--radius-md) !important;
+  font-weight: 500 !important;
+  padding: 0.5rem 1rem !important;
+  transition: all 0.15s ease !important;
+}
+
+.btn-primary {
+  background: var(--accent-emphasis) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(240, 246, 252, 0.1) !important;
+}
+
+.btn-primary:hover {
+  background: var(--accent-fg) !important;
+}
+
+/* ============ FOOTER ============ */
+
+footer,
+.footer {
+  color: var(--fg-subtle) !important;
+  border-top: 1px solid var(--border-muted);
+  padding-top: 1.5rem !important;
+  margin-top: 2rem;
+}
+
+footer a,
+.footer a {
+  color: var(--fg-secondary) !important;
+}
+
+footer a:hover,
+.footer a:hover {
+  color: var(--accent-fg) !important;
+}
+
+/* ============ FORMS ============ */
+
+input, select, textarea {
+  background: var(--canvas-inset) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--fg-primary) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent-fg) !important;
+  box-shadow: 0 0 0 3px rgba(47, 129, 247, 0.3) !important;
+  outline: none !important;
+}
+
+/* ============ TOOLTIPS ============ */
+
+.tooltip-inner {
+  background: var(--bg-elevated) !important;
+  color: var(--fg-primary) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+/* ============ SCROLLBAR ============ */
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--canvas-inset); }
+::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--fg-subtle); }
+
+/* ============ MISC ============ */
+
+.spinner-border { color: var(--accent-fg) !important; }
+::selection { background: var(--accent-emphasis); color: #ffffff; }
+
+@media (max-width: 768px) {
+  .status-page h1 { font-size: 1.5rem !important; }
+  .overall-status { padding: 1rem !important; }
+  .monitor-list-item, .item { padding: 0.875rem 1rem !important; }
+}
