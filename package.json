@@ -3,6 +3,13 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "server": "bun run server/index.ts",
+    "server:dev": "bun --watch run server/index.ts",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "dev": "bun run server:dev & bun run docker:up"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
