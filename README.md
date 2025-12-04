@@ -6,23 +6,34 @@
 [![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 [![Uptime Kuma](https://img.shields.io/badge/Uptime%20Kuma-5CDD8B?style=flat&logo=uptime-kuma&logoColor=white)](https://github.com/louislam/uptime-kuma)
 
-[![Themes](https://img.shields.io/badge/Themes-21-blue?style=for-the-badge)](./themes)
 [![Layouts](https://img.shields.io/badge/Layouts-5-green?style=for-the-badge)](./layouts)
+[![Themes](https://img.shields.io/badge/Themes-21-blue?style=for-the-badge)](./themes)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](http://makeapullrequest.com)
 
 A collection of beautiful, customizable themes and layouts for [Uptime Kuma](https://github.com/louislam/uptime-kuma) status pages.
 
 ---
 
+## Table of Contents
+
+- [Usage](#usage)
+- [Layouts](#layouts)
+- [Themes](#themes)
+- [Documentation](#documentation)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
+---
+
 ## Usage
 
-### Applying a Theme
+### Applying a Theme or Layout
 
 1. Open your Uptime Kuma dashboard
 2. Go to **Status Pages** and select a status page
 3. Click the **Edit Status Page** button
 4. Scroll down to the **Custom CSS** section
-5. Copy the contents of your chosen theme from `themes/<theme-name>/index.css`
+5. Copy the contents of your chosen theme from `themes/<theme-name>/index.css` or layout from `layouts/<layout-name>/index.css`
 6. Paste it into the Custom CSS field
 7. Save
 
@@ -37,6 +48,67 @@ You can combine any theme with any layout by concatenating both CSS files:
 /* Then, paste the layout CSS */
 /* layouts/two-column/index.css content here */
 ```
+
+---
+
+## Layouts
+
+- Layouts
+  - [Compact](#compact)
+  - [Two-Column](#two-column)
+  - [Three-Column](#three-column)
+  - [Cards Grid](#cards-grid)
+  - [Minimal](#minimal)
+
+---
+
+### Compact
+
+Dense, space-efficient layout for many monitors. Auto-fit grid with minimal padding.
+
+![Compact Layout](./layouts/compact/default.png)
+
+[View CSS](./layouts/compact/index.css)
+
+---
+
+### Two-Column
+
+Side-by-side monitor display. Forces exactly 2 columns on larger screens.
+
+![Two-Column Layout](./layouts/two-column/default.png)
+
+[View CSS](./layouts/two-column/index.css)
+
+---
+
+### Three-Column
+
+Maximum density grid layout. Forces 3 columns on large screens, 2 on medium.
+
+![Three-Column Layout](./layouts/three-column/default.png)
+
+[View CSS](./layouts/three-column/index.css)
+
+---
+
+### Cards Grid
+
+Individual monitors as responsive cards. Auto-fit grid with centered content.
+
+![Cards Grid Layout](./layouts/cards-grid/default.png)
+
+[View CSS](./layouts/cards-grid/index.css)
+
+---
+
+### Minimal
+
+Clean, distraction-free design. Narrow container with thin heartbeat bars.
+
+![Minimal Layout](./layouts/minimal/default.png)
+
+[View CSS](./layouts/minimal/index.css)
 
 ---
 
@@ -277,16 +349,6 @@ Deep blues with vibrant accents.
 
 ---
 
-## Layouts
-
-| Layout | Description |
-|--------|-------------|
-| **Compact** | Dense, space-efficient for many monitors |
-| **Two-Column** | Side-by-side monitor groups |
-| **Three-Column** | Maximum density grid layout |
-| **Cards Grid** | Individual monitors as responsive cards |
-| **Minimal** | Clean, distraction-free design |
-
 ## Documentation
 
 - [Development Guide](./docs/DEVELOPMENT.md) - Setting up the development environment, available scripts, mock server endpoints, and troubleshooting
@@ -299,6 +361,7 @@ MIT License - feel free to use these themes in your own projects!
 ## Acknowledgments
 
 - [Uptime Kuma](https://github.com/louislam/uptime-kuma) by Louis Lam
+- [brooksvb](https://github.com/brooksvb) For reference code on the layouts on this [gist](https://gist.github.com/brooksvb/78a54355151a18477e33c224177dc5fa)
 - Theme color palettes from their respective projects:
   - [Gruvbox](https://github.com/morhetz/gruvbox)
   - [Catppuccin](https://github.com/catppuccin/catppuccin)

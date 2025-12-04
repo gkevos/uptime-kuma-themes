@@ -3,19 +3,61 @@
    Dense, space-efficient layout for many monitors
    ======================================== */
 
-/* Container - narrower max-width */
+:root {
+  --compact-min-width: 24ch;
+  --compact-max-width: .5fr;
+  --compact-gap: 0.25rem;
+  --compact-padding: 0.25rem;
+}
+
+/* Let items expand on small screens */
+@media (max-width: 600px) {
+  :root {
+    --compact-max-width: 1fr;
+  }
+}
+
+/* Cap item width for better appearance on large screens */
+@media (min-width: 2560px) {
+  :root {
+    --compact-max-width: 300px;
+  }
+}
+
+/* Readability on 4K screens at distance */
+@media (min-width: 3840px) {
+  .item-name {
+    font-size: 1.3em !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.8px !important;
+  }
+  .badge {
+    font-size: 0.9em !important;
+  }
+  .wrap > .d-flex {
+    font-size: 0.9em !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.8px !important;
+  }
+}
+
+/* Container - expand to use available space */
 .container {
-  max-width: 800px !important;
+  max-width: 98% !important;
   padding: 0.75rem !important;
 }
 
 /* ============ HEADER ============ */
 
+.main {
+  position: relative !important;
+}
+
 .status-page .header,
 .status-page header {
   text-align: center;
-  margin-bottom: 1rem !important;
-  padding: 0.75rem 0 !important;
+  margin-bottom: 0.75rem !important;
+  padding: 0.5rem 0 !important;
 }
 
 .status-page h1 {
@@ -36,49 +78,91 @@
 /* ============ OVERALL STATUS ============ */
 
 .overall-status {
-  padding: 0.75rem 1rem !important;
-  margin-bottom: 1rem !important;
+  padding: 0.5rem !important;
+  margin-bottom: 0.75rem !important;
   font-size: 0.9rem !important;
   text-align: center;
+}
+
+/* Position overall status in header on desktop */
+body:not(.mobile) .overall-status {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 50% !important;
 }
 
 /* ============ MONITOR GROUPS ============ */
 
 .shadow-box {
-  margin-bottom: 0.75rem !important;
+  margin-bottom: 0.5rem !important;
 }
 
 .shadow-box .group-title,
 .monitor-group-title {
-  padding: 0.6rem 1rem !important;
-  font-size: 0.65rem !important;
+  padding: 0.4rem 0 !important;
+  font-size: 0.7rem !important;
+  margin-bottom: 0.35rem !important;
 }
 
-/* ============ MONITOR LIST - Compact ============ */
+/* ============ MONITOR LIST - Compact Grid ============ */
 
-.monitor-list-item,
+/* Key selector: .monitor-list > .monitor-list targets the actual item container */
+.monitor-list > .monitor-list {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(var(--compact-min-width), var(--compact-max-width))) !important;
+  grid-gap: var(--compact-gap) !important;
+}
+
+/* Individual monitor item */
 .item {
-  padding: 0.5rem 1rem !important;
-  min-height: unset !important;
+  width: 100% !important;
+  padding: var(--compact-padding) !important;
 }
 
-.monitor-list-item .name,
-.item .name {
+/* Stack item content vertically */
+.item > .row {
+  flex-direction: column !important;
+}
+
+.row > div {
+  width: 100% !important;
+}
+
+/* Monitor name styling */
+.item-name {
   font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
-/* ============ BADGES - Smaller ============ */
+/* ============ BADGES ============ */
+
+.row {
+  position: relative !important;
+}
 
 .badge {
   padding: 0.2rem 0.5rem !important;
   font-size: 0.6rem !important;
 }
 
-/* ============ HEARTBEAT BAR - Compact ============ */
+/* Position badge at bottom center on desktop */
+body:not(.mobile) .badge {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+/* ============ HEARTBEAT BAR ============ */
 
 .hp-bar-big,
 .beat-bar {
-  height: 20px !important;
+  height: 16px !important;
+  width: 100% !important;
 }
 
 .beat {
@@ -86,54 +170,73 @@
   margin: 0 0.5px !important;
 }
 
-.uptime {
-  font-size: 0.75rem !important;
+/* Uptime percentage and time labels */
+.wrap > .d-flex {
+  font-size: 0.7rem !important;
 }
 
-/* ============ INCIDENTS - Compact ============ */
+/* ============ MARGIN COMPACTING ============ */
 
-.incident {
-  padding: 0.75rem 1rem !important;
+.mb-4, .mb-5 {
   margin-bottom: 0.5rem !important;
 }
 
+.mt-4 {
+  margin-top: 0.5rem !important;
+}
+
+.mt-5 {
+  margin-top: 0 !important;
+}
+
+/* ============ INCIDENTS ============ */
+
+.incident {
+  padding: 0.5rem 0.75rem !important;
+  margin-bottom: 0.35rem !important;
+}
+
 .incident-title {
-  font-size: 0.9rem !important;
-  margin-bottom: 0.25rem !important;
+  font-size: 0.85rem !important;
+  margin-bottom: 0.2rem !important;
 }
 
 .incident .content {
-  font-size: 0.8rem !important;
+  font-size: 0.75rem !important;
   line-height: 1.4;
 }
 
 .incident .date {
-  font-size: 0.65rem !important;
-  margin-top: 0.5rem !important;
+  font-size: 0.6rem !important;
+  margin-top: 0.35rem !important;
 }
 
-/* ============ FOOTER - Compact ============ */
+/* ============ FOOTER ============ */
 
 footer,
 .footer {
-  padding: 1rem 0 !important;
-  margin-top: 1.5rem !important;
-  font-size: 0.75rem !important;
+  padding: 0.75rem 0 !important;
+  margin-top: 1rem !important;
+  font-size: 0.7rem !important;
   text-align: center;
 }
 
-/* ============ BUTTONS - Smaller ============ */
-
-.btn {
-  padding: 0.4rem 0.8rem !important;
-  font-size: 0.8rem !important;
+footer .alert-heading {
+  padding: 0 !important;
 }
 
-/* ============ FORMS - Compact ============ */
+/* ============ BUTTONS ============ */
+
+.btn {
+  padding: 0.35rem 0.7rem !important;
+  font-size: 0.75rem !important;
+}
+
+/* ============ FORMS ============ */
 
 input, select, textarea {
-  padding: 0.4rem 0.6rem !important;
-  font-size: 0.85rem !important;
+  padding: 0.35rem 0.5rem !important;
+  font-size: 0.8rem !important;
 }
 
 /* ============ RESPONSIVE ============ */
@@ -147,13 +250,12 @@ input, select, textarea {
     font-size: 1.25rem !important;
   }
 
-  .monitor-list-item,
   .item {
-    padding: 0.4rem 0.75rem !important;
+    padding: 0.25rem !important;
   }
 
   .hp-bar-big,
   .beat-bar {
-    height: 16px !important;
+    height: 14px !important;
   }
 }

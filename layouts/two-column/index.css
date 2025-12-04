@@ -1,7 +1,28 @@
 /* ========================================
    TWO-COLUMN LAYOUT
-   Side-by-side monitor groups for wide screens
+   Individual monitors in a two-column grid
    ======================================== */
+
+:root {
+  --two-col-min-width: 400px;
+  --two-col-max-width: 1fr;
+  --two-col-gap: 0.75rem;
+  --two-col-padding: 0.5rem;
+}
+
+/* Let items expand on small screens */
+@media (max-width: 900px) {
+  :root {
+    --two-col-min-width: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --two-col-max-width: 1fr;
+    --two-col-min-width: 100%;
+  }
+}
 
 /* Container - wider for columns */
 .container {
@@ -14,7 +35,7 @@
 .status-page .header,
 .status-page header {
   text-align: center;
-  margin-bottom: 2rem !important;
+  margin-bottom: 1.5rem !important;
   padding: 1rem 0 !important;
 }
 
@@ -37,83 +58,119 @@
 /* ============ OVERALL STATUS ============ */
 
 .overall-status {
-  padding: 1.25rem 1.5rem !important;
-  margin-bottom: 2rem !important;
+  padding: 0.75rem 1rem !important;
+  margin-bottom: 1.5rem !important;
   font-size: 1rem !important;
   text-align: center;
 }
 
-/* ============ MONITOR GROUPS - Two Column Grid ============ */
+/* ============ MONITOR GROUPS ============ */
 
-/* Target the container holding all monitor groups */
-.monitor-list,
-.shadow-box-list,
-[class*="monitor"] > .shadow-box:first-child,
-.status-page > .container > div:not(.header):not(.overall-status):not(.footer) {
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 1.25rem !important;
-  align-items: start !important;
-}
-
-/* Each monitor group card */
 .shadow-box {
-  margin-bottom: 0 !important;
-  height: fit-content;
+  margin-bottom: 1rem !important;
 }
 
 .shadow-box .group-title,
 .monitor-group-title {
-  padding: 1rem 1.25rem !important;
-  font-size: 0.7rem !important;
+  padding: 0.5rem 0 !important;
+  font-size: 0.85rem !important;
+  margin-bottom: 0.75rem !important;
 }
 
-/* ============ MONITOR LIST ============ */
+/* ============ MONITOR LIST - Two Column Grid ============ */
 
-.monitor-list-item,
+/* Key selector: .monitor-list > .monitor-list targets the actual item container */
+.monitor-list > .monitor-list {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(var(--two-col-min-width), var(--two-col-max-width))) !important;
+  grid-gap: var(--two-col-gap) !important;
+}
+
+/* Force exactly 2 columns on larger screens */
+@media (min-width: 901px) {
+  .monitor-list > .monitor-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Individual monitor item */
 .item {
-  padding: 0.875rem 1.25rem !important;
+  width: 100% !important;
+  padding: var(--two-col-padding) !important;
 }
 
-.monitor-list-item .name,
-.item .name {
-  font-size: 0.9rem !important;
+/* Stack item content vertically */
+.item > .row {
+  flex-direction: column !important;
+}
+
+.row > div {
+  width: 100% !important;
+}
+
+/* Monitor name styling */
+.item-name {
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.5rem !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
 }
 
 /* ============ BADGES ============ */
 
+.row {
+  position: relative !important;
+}
+
 .badge {
-  padding: 0.3rem 0.7rem !important;
-  font-size: 0.65rem !important;
+  padding: 0.25rem 0.5rem !important;
+  font-size: 0.7rem !important;
+}
+
+/* Position badge at bottom center on desktop */
+body:not(.mobile) .badge {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
 }
 
 /* ============ HEARTBEAT BAR ============ */
 
 .hp-bar-big,
 .beat-bar {
-  height: 24px !important;
+  height: 20px !important;
+  width: 100% !important;
 }
 
 .beat {
   min-width: 3px !important;
 }
 
-.uptime {
+/* Uptime percentage and time labels */
+.wrap > .d-flex {
   font-size: 0.8rem !important;
 }
 
-/* ============ INCIDENTS - Two Column ============ */
+/* ============ MARGIN COMPACTING ============ */
 
-.incidents-list,
-.incident-list {
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 1rem !important;
+.mb-4, .mb-5 {
+  margin-bottom: 0.75rem !important;
 }
 
+.mt-4 {
+  margin-top: 0.75rem !important;
+}
+
+.mt-5 {
+  margin-top: 0.5rem !important;
+}
+
+/* ============ INCIDENTS ============ */
+
 .incident {
-  padding: 1.25rem !important;
-  margin-bottom: 0 !important;
+  padding: 1rem !important;
 }
 
 .incident-title {
@@ -132,45 +189,34 @@
 
 footer,
 .footer {
-  grid-column: 1 / -1 !important;
-  padding: 1.5rem 0 !important;
-  margin-top: 2rem !important;
+  padding: 1rem 0 !important;
+  margin-top: 1.5rem !important;
   text-align: center;
+}
+
+footer .alert-heading {
+  padding: 0 !important;
 }
 
 /* ============ RESPONSIVE ============ */
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .container {
     max-width: 100% !important;
     padding: 1rem !important;
   }
 
-  .monitor-list,
-  .shadow-box-list,
-  [class*="monitor"] > .shadow-box:first-child,
-  .status-page > .container > div:not(.header):not(.overall-status):not(.footer),
-  .incidents-list,
-  .incident-list {
-    grid-template-columns: 1fr !important;
-  }
-
-  .shadow-box {
-    margin-bottom: 1rem !important;
-  }
-
-  .incident {
-    margin-bottom: 0.75rem !important;
-  }
-}
-
-@media (max-width: 600px) {
   .status-page h1 {
     font-size: 1.75rem !important;
   }
+}
 
-  .monitor-list-item,
+@media (max-width: 480px) {
+  .status-page h1 {
+    font-size: 1.5rem !important;
+  }
+
   .item {
-    padding: 0.75rem 1rem !important;
+    padding: 0.5rem !important;
   }
 }

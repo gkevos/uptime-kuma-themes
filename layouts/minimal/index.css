@@ -27,14 +27,12 @@
 
 .status-page .description {
   font-size: 0.95rem !important;
-  opacity: 0.7;
   margin-bottom: 0 !important;
 }
 
 .status-page .logo {
   max-height: 36px !important;
   margin-bottom: 1.5rem !important;
-  opacity: 0.9;
 }
 
 /* ============ OVERALL STATUS - Subtle ============ */
@@ -44,26 +42,19 @@
   margin-bottom: 3rem !important;
   font-size: 0.9rem !important;
   text-align: center;
-  border-radius: 8px !important;
   font-weight: 500;
 }
 
 /* ============ MONITOR GROUPS - Borderless ============ */
 
 .shadow-box {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
   margin-bottom: 2rem !important;
-  border-radius: 0 !important;
 }
 
 .shadow-box .group-title,
 .monitor-group-title {
   padding: 0 0 0.75rem 0 !important;
   font-size: 0.7rem !important;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.2) !important;
-  background: transparent !important;
   margin-bottom: 0.5rem !important;
 }
 
@@ -72,19 +63,6 @@
 .monitor-list-item,
 .item {
   padding: 0.875rem 0 !important;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.1) !important;
-  background: transparent !important;
-}
-
-.monitor-list-item:last-child,
-.item:last-child {
-  border-bottom: none !important;
-}
-
-.monitor-list-item:hover,
-.item:hover {
-  background: transparent !important;
-  opacity: 0.8;
 }
 
 .monitor-list-item .name,
@@ -99,7 +77,6 @@
   padding: 0.25rem 0.6rem !important;
   font-size: 0.65rem !important;
   font-weight: 500 !important;
-  border-radius: 4px !important;
   text-transform: lowercase !important;
   letter-spacing: 0 !important;
 }
@@ -109,13 +86,11 @@
 .hp-bar-big,
 .beat-bar {
   height: 4px !important;
-  border-radius: 2px !important;
   overflow: hidden;
 }
 
 .beat {
   min-width: 3px !important;
-  border-radius: 0 !important;
   margin: 0 !important;
 }
 
@@ -131,17 +106,8 @@
 /* ============ INCIDENTS - Clean ============ */
 
 .incident {
-  background: transparent !important;
-  border: none !important;
-  border-left: 2px solid rgba(128, 128, 128, 0.3) !important;
-  border-radius: 0 !important;
   padding: 0.75rem 0 0.75rem 1.25rem !important;
   margin-bottom: 1.5rem !important;
-}
-
-.incident:hover {
-  border-left-color: rgba(128, 128, 128, 0.6) !important;
-  box-shadow: none !important;
 }
 
 .incident-title {
@@ -152,13 +118,11 @@
 
 .incident .content {
   font-size: 0.85rem !important;
-  opacity: 0.8;
   line-height: 1.6;
 }
 
 .incident .date {
   font-size: 0.7rem !important;
-  opacity: 0.5;
   margin-top: 0.75rem !important;
 }
 
@@ -170,18 +134,11 @@ footer,
   margin-top: 4rem !important;
   text-align: center;
   font-size: 0.75rem !important;
-  opacity: 0.5;
-  border-top: none !important;
 }
 
 footer a,
 .footer a {
   text-decoration: none !important;
-}
-
-footer a:hover,
-.footer a:hover {
-  opacity: 1;
 }
 
 /* ============ BUTTONS - Ghost style ============ */
@@ -190,26 +147,13 @@ footer a:hover,
   padding: 0.5rem 1rem !important;
   font-size: 0.85rem !important;
   font-weight: 400 !important;
-  border-radius: 6px !important;
-  background: transparent !important;
-  border: 1px solid rgba(128, 128, 128, 0.3) !important;
-}
-
-.btn:hover {
-  border-color: rgba(128, 128, 128, 0.6) !important;
-}
-
-.btn-primary {
-  background: transparent !important;
 }
 
 /* ============ FORMS - Minimal ============ */
 
 input, select, textarea {
   padding: 0.6rem 0.75rem !important;
-  border-radius: 6px !important;
   font-size: 0.9rem !important;
-  border-width: 1px !important;
 }
 
 /* ============ TOOLTIPS ============ */
@@ -217,13 +161,6 @@ input, select, textarea {
 .tooltip-inner {
   font-size: 0.8rem !important;
   padding: 0.4rem 0.6rem !important;
-}
-
-/* ============ REMOVE DECORATIVE ELEMENTS ============ */
-
-body::before,
-body::after {
-  display: none !important;
 }
 
 /* ============ RESPONSIVE ============ */

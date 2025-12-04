@@ -3,10 +3,31 @@
    Maximum density for large monitor counts
    ======================================== */
 
+:root {
+  --three-col-min-width: 280px;
+  --three-col-max-width: 1fr;
+  --three-col-gap: 0.5rem;
+  --three-col-padding: 0.35rem;
+}
+
+/* Let items expand on medium screens */
+@media (max-width: 1200px) {
+  :root {
+    --three-col-min-width: 250px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --three-col-max-width: 1fr;
+    --three-col-min-width: 100%;
+  }
+}
+
 /* Container - extra wide for 3 columns */
 .container {
-  max-width: 1400px !important;
-  padding: 1.5rem !important;
+  max-width: 98% !important;
+  padding: 1rem !important;
 }
 
 /* ============ HEADER ============ */
@@ -14,8 +35,8 @@
 .status-page .header,
 .status-page header {
   text-align: center;
-  margin-bottom: 2rem !important;
-  padding: 1rem 0 !important;
+  margin-bottom: 1rem !important;
+  padding: 0.75rem 0 !important;
 }
 
 .status-page h1 {
@@ -26,105 +47,138 @@
 .status-page .description {
   font-size: 0.95rem !important;
   max-width: 700px;
-  margin: 0 auto 1rem;
+  margin: 0 auto 0.75rem;
 }
 
 .status-page .logo {
   max-height: 50px !important;
-  margin-bottom: 1rem !important;
+  margin-bottom: 0.75rem !important;
 }
 
 /* ============ OVERALL STATUS ============ */
 
 .overall-status {
-  padding: 1rem 1.5rem !important;
-  margin-bottom: 1.5rem !important;
+  padding: 0.5rem 1rem !important;
+  margin-bottom: 1rem !important;
   font-size: 0.95rem !important;
   text-align: center;
 }
 
-/* ============ MONITOR GROUPS - Three Column Grid ============ */
+/* ============ MONITOR GROUPS ============ */
 
-.monitor-list,
-.shadow-box-list,
-[class*="monitor"] > .shadow-box:first-child,
-.status-page > .container > div:not(.header):not(.overall-status):not(.footer) {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 1rem !important;
-  align-items: start !important;
-}
-
-/* Each monitor group card */
 .shadow-box {
-  margin-bottom: 0 !important;
-  height: fit-content;
+  margin-bottom: 0.75rem !important;
 }
 
 .shadow-box .group-title,
 .monitor-group-title {
-  padding: 0.875rem 1rem !important;
-  font-size: 0.65rem !important;
+  padding: 0.5rem 0 !important;
+  font-size: 0.8rem !important;
+  margin-bottom: 0.5rem !important;
 }
 
-/* ============ MONITOR LIST - Condensed ============ */
+/* ============ MONITOR LIST - Three Column Grid ============ */
 
-.monitor-list-item,
+/* Key selector: .monitor-list > .monitor-list targets the actual item container */
+.monitor-list > .monitor-list {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(var(--three-col-min-width), var(--three-col-max-width))) !important;
+  grid-gap: var(--three-col-gap) !important;
+}
+
+/* Force exactly 3 columns on larger screens */
+@media (min-width: 1201px) {
+  .monitor-list > .monitor-list {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* Force 2 columns on medium screens */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .monitor-list > .monitor-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Individual monitor item */
 .item {
-  padding: 0.625rem 1rem !important;
-  flex-wrap: wrap;
+  width: 100% !important;
+  padding: var(--three-col-padding) !important;
 }
 
-.monitor-list-item .name,
-.item .name {
-  font-size: 0.85rem !important;
-  flex: 1 1 100%;
-  margin-bottom: 0.25rem;
+/* Stack item content vertically */
+.item > .row {
+  flex-direction: column !important;
 }
 
-/* Stack elements vertically on smaller cards */
-.monitor-list-item > *,
-.item > * {
-  flex-shrink: 0;
+.row > div {
+  width: 100% !important;
+}
+
+/* Monitor name styling */
+.item-name {
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.35rem !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 /* ============ BADGES ============ */
 
-.badge {
-  padding: 0.25rem 0.6rem !important;
-  font-size: 0.6rem !important;
+.row {
+  position: relative !important;
 }
 
-/* ============ HEARTBEAT BAR - Compact for 3-col ============ */
+.badge {
+  padding: 0.2rem 0.4rem !important;
+  font-size: 0.65rem !important;
+}
+
+/* Position badge at bottom center on desktop */
+body:not(.mobile) .badge {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+/* ============ HEARTBEAT BAR ============ */
 
 .hp-bar-big,
 .beat-bar {
-  height: 20px !important;
+  height: 18px !important;
   width: 100% !important;
-  margin-top: 0.25rem;
 }
 
 .beat {
   min-width: 2px !important;
-  margin: 0 0.3px !important;
 }
 
-.uptime {
+/* Uptime percentage and time labels */
+.wrap > .d-flex {
   font-size: 0.75rem !important;
 }
 
-/* ============ INCIDENTS - Three Column ============ */
+/* ============ MARGIN COMPACTING ============ */
 
-.incidents-list,
-.incident-list {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 0.875rem !important;
+.mb-4, .mb-5 {
+  margin-bottom: 0.5rem !important;
 }
 
+.mt-4 {
+  margin-top: 0.5rem !important;
+}
+
+.mt-5 {
+  margin-top: 0.25rem !important;
+}
+
+/* ============ INCIDENTS ============ */
+
 .incident {
-  padding: 1rem !important;
-  margin-bottom: 0 !important;
+  padding: 0.75rem !important;
 }
 
 .incident-title {
@@ -144,43 +198,21 @@
 
 footer,
 .footer {
-  grid-column: 1 / -1 !important;
-  padding: 1.5rem 0 !important;
-  margin-top: 2rem !important;
+  padding: 1rem 0 !important;
+  margin-top: 1rem !important;
   text-align: center;
   font-size: 0.85rem !important;
 }
 
-/* ============ RESPONSIVE ============ */
-
-@media (max-width: 1100px) {
-  .monitor-list,
-  .shadow-box-list,
-  [class*="monitor"] > .shadow-box:first-child,
-  .status-page > .container > div:not(.header):not(.overall-status):not(.footer),
-  .incidents-list,
-  .incident-list {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
+footer .alert-heading {
+  padding: 0 !important;
 }
+
+/* ============ RESPONSIVE ============ */
 
 @media (max-width: 768px) {
   .container {
-    padding: 1rem !important;
-  }
-
-  .monitor-list,
-  .shadow-box-list,
-  [class*="monitor"] > .shadow-box:first-child,
-  .status-page > .container > div:not(.header):not(.overall-status):not(.footer),
-  .incidents-list,
-  .incident-list {
-    grid-template-columns: 1fr !important;
-  }
-
-  .shadow-box,
-  .incident {
-    margin-bottom: 0.75rem !important;
+    padding: 0.75rem !important;
   }
 
   .status-page h1 {
@@ -189,13 +221,15 @@ footer,
 }
 
 @media (max-width: 480px) {
-  .monitor-list-item,
-  .item {
-    padding: 0.5rem 0.75rem !important;
+  .status-page h1 {
+    font-size: 1.25rem !important;
   }
 
-  .hp-bar-big,
-  .beat-bar {
-    height: 16px !important;
+  .item {
+    padding: 0.35rem !important;
+  }
+
+  .item-name {
+    font-size: 0.85rem !important;
   }
 }
