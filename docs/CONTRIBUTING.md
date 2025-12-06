@@ -25,9 +25,10 @@ Contributions are welcome! Here's how to get started.
 3. Start the dev environment: `bun dev`
 4. Seed the database with monitors: `bun run db:seed`
 5. Make your changes and test in Uptime Kuma
-6. Commit your changes: `git commit -m "Add my-new-theme"`
-7. Push to your fork: `git push origin feature/my-new-theme`
-8. Open a Pull Request
+6. Add your changes to the new commit: `git add .`
+7. Commit your changes: `git commit -m "Added my-new-theme"`
+8. Push to your fork: `git push origin feature/my-new-theme`
+9. Open a Pull Request
 
 ## Code Style
 

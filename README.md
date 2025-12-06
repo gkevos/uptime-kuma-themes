@@ -132,6 +132,7 @@ Clean, distraction-free design. Narrow container with thin heartbeat bars.
   - [Horizon](#horizon)
   - [One Light](#one-light)
   - [Moonlight](#moonlight)
+  - [Cute Kuma](#cute-kuma)
 
 ---
 
@@ -342,6 +343,16 @@ Deep blues with vibrant accents.
 ![Moonlight Theme](./themes/moonlight/default.png)
 
 [View CSS](./themes/moonlight/index.css)
+
+---
+
+### Cute Kuma
+
+Uses design elements found in Shadcn based UI libraries.
+
+![Cute Kuma](./themes/cute-kuma/default.png)
+
+[View CSS](./themes/cute-kuma/index.css)
 
 ---
 
