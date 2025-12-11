@@ -221,6 +221,7 @@ body::before {
 .beat-bar {
   background: var(--mantle) !important;
   border-radius: var(--radius-sm) !important;
+  background: rgba(166, 227, 161, 0.15) !important;
 }
 
 .beat {
